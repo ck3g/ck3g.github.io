@@ -311,20 +311,26 @@ The shorter version of our previous query would look like:
 ```
 iex> import Ecto.Query
 iex> room_id = 1
+iex> limit = 3
 iex> Prater.Conversation.Message |>
-...> select([msg], %{id: msg.id, content: msg.content}) |>
+...> join(:inner, [msg], usr in assoc(msg, :user)) |>
+...> select([msg, usr], %{id: msg.id, content: msg.content, user: %{username: usr.username}}) |>
 ...> where([msg], msg.room_id == ^room_id) |>
+...> order_by([msg], desc: msg.inserted_at) |>
+...> limit(^limit) |>
 ...> Prater.Repo.all
 
 [
-  %{content: "Hello again", id: 4},
-  %{content: "Hey ", id: 3},
-  %{content: "Hello there", id: 2}
+  %{content: "Hello again", id: 4, user: %{username: "ck3g"}},
+  %{content: "Hey ", id: 3, user: %{username: "user"}},
+  %{content: "Hello there", id: 2, user: %{username: "ck3g"}}
 ]
 ```
 
-Although I didn't manage to find how to properly use "joins" for that syntax.
-If you know how to do that, let me know in the comments below.
+~~Although I didn't manage to find how to properly use "joins" for that syntax.
+If you know how to do that, let me know in the comments below.~~
+
+Thanks to Robert Beene who pointed out how to use "joins" in the comments below.
 
 Which type of syntax to use, it is completely up to you.
 
