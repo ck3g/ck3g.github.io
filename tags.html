@@ -9,6 +9,23 @@ keywords: "Vitaly Tatarintsev, Vitali Tatarintev, developer, learning, Elixir, P
 {% capture site_tags %}{% for tag in site.tags %}{{ tag | first }}{% unless forloop.last %},{% endunless %}{% endfor %}{% endcapture %}
 {% assign tag_words = site_tags | split:',' | sort %}
 
+<div class="text-center">
+  <h6 class="tag-title">
+    {% for item in (0..site.tags.size) %}
+    {% unless forloop.last %}
+    {% capture this_word %}{{ tag_words[item] | strip_newlines }}{% endcapture %}
+    <a class="button" href="{{site.baseurl}}/tags#{{this_word}}">
+      <i class="fa fa-tag fa-fw"></i> {{ this_word }} ({{ site.tags[this_word].size  }})
+    </a>
+    {% endunless %}
+    {% endfor %}
+  </h6>
+</div>
+
+<hr />
+
+<h2 class="text-center">Articles by tags</h2>
+
 <!-- cycles through tag list and creates subheader for each tag name -->
 {% for item in (0..site.tags.size) %}
   {% unless forloop.last %}
