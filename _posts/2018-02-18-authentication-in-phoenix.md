@@ -291,7 +291,7 @@ delete "/sign_out", SessionController, :delete
 
 And the button. Let's add it next to the username.
 
-```
+```erb
 <%= if Prater.Auth.user_signed_in?(@conn) do %>
   <nav class="my-2 my-md-0 mr-md-3">
     Signed in as: <strong><%= Prater.Auth.current_user(@conn).username %></strong>
@@ -325,8 +325,10 @@ Now, let's add small improvement and show "Sign In" button for signed out users
 
 We need to add the following link to the `else` condition in the nav bar.
 
-```
-<%= link "Sign In", to: session_path(@conn, :new), class: "btn btn-outline-primary" %>
+```erb
+<%= link "Sign In",
+  to: session_path(@conn, :new),
+  class: "btn btn-outline-primary" %>
 ```
 
 Now it is easier to navigate to sign in form.
@@ -404,8 +406,10 @@ resources "/registrations", RegistrationController, only: [:new, :create]
 
 Now we can add a link to registration page next to our "Sign in" link in the navigation bar.
 
-```
-<%= link "Sign Up", to: registration_path(@conn, :new), class: "btn btn-outline-primary ml-md-3" %>
+```erb
+<%= link "Sign Up",
+  to: registration_path(@conn, :new),
+  class: "btn btn-outline-primary ml-md-3" %>
 ```
 
 Then we create a controller `lib/prater_web/controllers/registration_controller.ex` with the following content

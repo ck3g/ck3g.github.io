@@ -23,13 +23,13 @@ Sometimes it is easier to implement a functionality from inside out. We already 
 
 Let's change the following line in there:
 
-```html
+```erb
 <li class="list-group-item">Lobby</li>
 ```
 
 to
 
-```html
+```erb
 <%= inspect @rooms %>
 ```
 
@@ -67,7 +67,10 @@ That is also correct. We don't have that module yet. So let's create it in the `
 defmodule Prater.Conversation do
   def list_rooms do
     [
-      %{name: "Lobby", description: "The general chat room. Everybody welcome here."}
+      %{
+        name: "Lobby",
+        description: "The general chat room. Everybody welcome here."
+      }
     ]
   end
 end
@@ -86,13 +89,13 @@ We need to iterate through every room item in the list, grab the name of it, and
 
 In our template file, we need to replace
 
-```html
+```erb
 <%= inspect @rooms %>
 ```
 
 with
 
-```html
+```erb
 <%= for room <- @rooms do %>
   <li class="list-group-item"><%= room.name %></li>
 <% end %>

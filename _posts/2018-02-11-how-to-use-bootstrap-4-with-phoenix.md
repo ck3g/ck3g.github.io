@@ -35,7 +35,7 @@ Anyway, let's move to implementation.
 
 To starting using Bootstrap from CDN we need to update our layout file `lib/prater_web/templates/layout/app.html.eex` by adding CSS to the `<head>` right before we are using our `css/app.css` file.
 
-```html
+```erb
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <!-- Before that line -->
 <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
@@ -52,7 +52,7 @@ That can reduce one of your fears and project yourself from getting a harmful ve
 Next, let's add JavaScript files. Bootstrap 4 depends on jQuery and Popper.js. So we need to add those dependencies in front of Bootstrap JS file.
 We also put all these lines before the usage of our `js/app.js`.
 
-```html
+```erb
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -82,7 +82,7 @@ body {
 
 Next, in the `lib/prater_web/templates/layout/app.html.eex` file we need to replace the "navbar" section with the following markup.
 
-```html
+```erb
 <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
   <h5 class="my-0 mr-md-auto font-weight-normal">
     <a href="/" class="navbar-brand text-dark"><strong>Prater</strong></a>
@@ -92,7 +92,7 @@ Next, in the `lib/prater_web/templates/layout/app.html.eex` file we need to repl
 
 We also need to wrap our flash messages into conditions to render them only when we have some of them.
 
-```html
+```erb
 <%= unless is_nil(get_flash(@conn, :info)) do %>
   <p class="alert alert-success" role="alert"><%= get_flash(@conn, :info) %></p>
 <% end %>
@@ -103,7 +103,7 @@ We also need to wrap our flash messages into conditions to render them only when
 
 as the last piece we need to update our jumbotron section in the `lib/prater_web/templates/room/index.html.eex` file with:
 
-```html
+```erb
 <div class="col">
   <section class="jumbotron text-center">
     <h1 class="jumbotron-heading mb-5">Welcome to Prater</h1>
@@ -125,13 +125,13 @@ Now let's check if our JS works. We are going to add a small tooltip message to 
 
 In the `lib/prater_web/templates/room/index.html.eex` file, let's replace the room's link
 
-```html
+```erb
 <%= link room.name, to: room_path(@conn, :show, room.id) %>
 ```
 
 with the following code
 
-```html
+```erb
 <%= link room.name, to: room_path(@conn, :show, room.id), title: room.description, data: [toggle: "tooltip", placement: "right", html: "true"] %>
 ```
 
@@ -154,7 +154,7 @@ Back in the day, I was using a collection of the icons called [Font Awesome](htt
 
 As [it stated](https://fontawesome.com/get-started) on Font Awesome page, the easiest and recommended way to add that library into our project is to use CDN. We already familiar with that one. Let's add a CDN link right after our Bootstrap CDN.
 
-```html
+```erb
 <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 ```
 
@@ -170,7 +170,7 @@ Where the `icon-name` is the name of the icon you can find on the Font Awesome s
 
 Let's improve our tooltip by displaying a small "info" icon next to a room name. To do that we need to update the `<li>` tag in the `lib/prater_web/templates/room/index.html.eex` file.
 
-```html
+```erb
 <li class="list-group-item">
   <%= link room.name, to: room_path(@conn, :show, room.id) %>
   <%= if !is_nil(room.description) && room.description != "" do %>
@@ -281,7 +281,7 @@ But it allows reusing Bootstrap's SCSS variables to have a consistent style.
 
 For example:
 
-```css
+```scss
 .jumbotron-heading {
   color: $orange;
 }

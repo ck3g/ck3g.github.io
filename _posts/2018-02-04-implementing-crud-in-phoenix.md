@@ -39,20 +39,22 @@ So we need a button. Let's render it next to our "Rooms" title.
 
 Replace the following line in the `lib/prater_web/templates/room/index.html.eex` file:
 
-```html
+```erb
 <h3>Rooms</h3>
 ```
 
 with
 
-```html
-<h3>Rooms <%= link "+", to: "/rooms/new", class: "btn btn-success" %></h3>
+```erb
+<h3>
+  Rooms <%= link "+", to: "/rooms/new", class: "btn btn-success" %>
+</h3>
 ```
 
 Here we have used [Phoenix HTML link](https://hexdocs.pm/phoenix_html/Phoenix.HTML.Link.html#link/2) helper to render a link on the page. That is equivalent of the following code:
 
-```html
-<h3>Rooms <a href="/rooms/new", class: "btn btn-success">+</a></h3>
+```erb
+<h3>Rooms <a href="/rooms/new" class: "btn btn-success">+</a></h3>
 ```
 
 So now we have a link next to our "Rooms" title. We click it, we get an error message:
@@ -96,7 +98,7 @@ Could not render "new.html" for PraterWeb.RoomView
 
 We are going to create it with the simple title.
 
-```html
+```erb
 <h2>Add new room</h2>
 ```
 
@@ -108,7 +110,7 @@ We do it to check we are on the right page. And we are
 
 Now let's render the form by using the following markup.
 
-```html
+```erb
 <h2>Add new room</h2>
 
 <%= form_for @changeset, room_path(@conn, :create), fn f -> %>
@@ -277,13 +279,13 @@ We start by adding the link.
 
 Open the `lib/prater_web/templates/room/index.html.eex` file and change following line:
 
-```html
+```erb
 <li class="list-group-item"><%= room.name %></li>
 ```
 
 to
 
-```html
+```erb
 <li class="list-group-item">
   <%= link room.name, to: room_path(@conn, :show, room.id) %>
 </li>
@@ -309,7 +311,7 @@ end
 
 That is not the first action we are creating. We already have some experience doing that. We know we need a template file  `lib/prater_web/templates/room/show.html.eex`. Let's use a simple title to check if what we did before is working.
 
-```html
+```erb
 <h2>Room details</h2>
 ```
 
@@ -326,7 +328,7 @@ end
 
 Now we have the room's data and can display it on the page. Let's update our template.
 
-```html
+```erb
 <h2><%= @room.name %></h2>
 
 <div><%= @room.description %></div>
@@ -370,7 +372,7 @@ We are going to implement the update functionality.
 Similar to "create" we need a link, so a user will be able to navigate to the page with the edit form.
 
 
-```html
+```erb
 <div>
   <%= link "Edit", to: room_path(@conn, :edit, @room.id), class: "btn btn-default" %>
 </div>
@@ -395,7 +397,7 @@ end
 With some small difference comparing to show, we need to pass changeset to the template in order to render the form.
 Speaking of which. There it is:
 
-```html
+```erb
 <h2>Edit room: <%= @room.name %></h2>
 
 <%= form_for @changeset, room_path(@conn, :update, @room), fn f -> %>
@@ -492,7 +494,7 @@ But the forms barely have a difference. The only difference is the URL we are us
 
 Let's extract the form in the `lib/prater_web/templates/room/form.html.eex` file with the following content.
 
-```html
+```erb
 <%= form_for @changeset, @action, fn f -> %>
   <div class="form-group">
     <%= label f, :name, class: "control-label" %>
@@ -515,7 +517,7 @@ That is the same form we have in our templates with the small difference. It has
 
 Now we can update a `new.html.eex` template to use that form:
 
-```html
+```erb
 <h2>Add new room</h2>
 
 <%= render "form.html", Map.put(assigns, :action, room_path(@conn, :create)) %>
@@ -526,7 +528,7 @@ We are injecting another template inside existing one and extend `assigns` map w
 
 We are also updating the `edit.html.eex` template with similar `render` call:
 
-```html
+```erb
 <%= render "form.html", Map.put(assigns, :action, room_path(@conn, :update, @room)) %>
 ```
 
@@ -538,7 +540,7 @@ We are done. Check everything again and be sure it is still working. Let's move 
 
 To implement the delete functionality we will start with the link again.
 
-```html
+```erb
 <%= link "Delete", to: room_path(@conn, :delete, @room), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
 ```
 
