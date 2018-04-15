@@ -28,6 +28,15 @@ At some point in time, one would understand the importance of automatic testing.
 
 Automatic testing of software is a huge topic. Which probably requires a book to cover. We would need several articles to cover most important parts.
 
+<hr />
+This article is the part of the testing in Elixir series:
+
+* Part 1: Introduction to testing
+* [Part 2: Testing Models and Controllers](http://whatdidilearn.info/2018/04/01/testing-phoenix-models-and-controllers.html)
+* [Part 3: Testing Channels](http://whatdidilearn.info/2018/04/08/testing-phoenix-channels.html)
+* [Part 4: User Interface testing](http://whatdidilearn.info/2018/04/15/phoenix-ui-tests-using-hound.html)
+<hr />
+
 #### What are automated tests?
 
 Automated tests are parts of the code which checks the other parts of the code. The test "passes" (or "green") when the target code works as it is described in the test. The test "fails" (or "red") when the target code works no in the way it is expected to work.

@@ -11,6 +11,15 @@ tags: [Elixir, Phoenix, Testing]
 Now let's go further and learn how to add tests to Phoenix project.
 We will learn how to write tests for Models and Controllers.
 
+<hr />
+This article is the part of the testing in Elixir series:
+
+* [Part 1: Introduction to testing](http://whatdidilearn.info/2018/03/25/introduction-to-testing.html)
+* Part 2: Testing Models and Controllers
+* [Part 3: Testing Channels](http://whatdidilearn.info/2018/04/08/testing-phoenix-channels.html)
+* [Part 4: User Interface testing](http://whatdidilearn.info/2018/04/15/phoenix-ui-tests-using-hound.html)
+<hr />
+
 During the last months, we were building the ["Prater"](https://github.com/ck3g/prater) chat application.
 Thus we have an existing functionality we can cover with tests now.
 
