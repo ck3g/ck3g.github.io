@@ -32,9 +32,10 @@ Automatic testing of software is a huge topic. Which probably requires a book to
 This article is the part of the testing in Elixir series:
 
 * Part 1: Introduction to testing
-* [Part 2: Testing Models and Controllers](http://whatdidilearn.info/2018/04/01/testing-phoenix-models-and-controllers.html)
-* [Part 3: Testing Channels](http://whatdidilearn.info/2018/04/08/testing-phoenix-channels.html)
-* [Part 4: User Interface testing](http://whatdidilearn.info/2018/04/15/phoenix-ui-tests-using-hound.html)
+* [Part 2: Testing Models and Controllers]({{ site.url }}/2018/04/01/testing-phoenix-models-and-controllers.html)
+* [Part 3: Testing Channels]({{ site.url }}/2018/04/08/testing-phoenix-channels.html)
+* [Part 4: User Interface testing]({{ site.url }}/2018/04/15/phoenix-ui-tests-using-hound.html)
+* [Part 5: Property-based testing]({{ site.url }}/2018/04/22/property-based-testing.html)
 <hr />
 
 #### What are automated tests?

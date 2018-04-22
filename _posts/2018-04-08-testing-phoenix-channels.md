@@ -16,10 +16,11 @@ This time are going to cover the testing approach for Phoenix channels.
 <hr />
 This article is the part of the testing in Elixir series:
 
-* [Part 1: Introduction to testing](http://whatdidilearn.info/2018/03/25/introduction-to-testing.html)
-* [Part 2: Testing Models and Controllers](http://whatdidilearn.info/2018/04/01/testing-phoenix-models-and-controllers.html)
+* [Part 1: Introduction to testing]({{ site.url }}/2018/03/25/introduction-to-testing.html)
+* [Part 2: Testing Models and Controllers]({{ site.url }}/2018/04/01/testing-phoenix-models-and-controllers.html)
 * Part 3: Testing Channels
-* [Part 4: User Interface testing](http://whatdidilearn.info/2018/04/15/phoenix-ui-tests-using-hound.html)
+* [Part 4: User Interface testing]({{ site.url }}/2018/04/15/phoenix-ui-tests-using-hound.html)
+* [Part 5: Property-based testing]({{ site.url }}/2018/04/22/property-based-testing.html)
 <hr />
 
 As usual, we will use ["Prater"](https://github.com/ck3g/prater) project as our playground. We already have a functionality to join a room and send messages to other users. So let's cover that functionality with tests.
