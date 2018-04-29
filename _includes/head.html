@@ -11,8 +11,18 @@
 
 	<meta charset="utf-8">
 	<title>{% if page.title %}{{ page.title }} |{% endif %} {{ site.template.title }}</title>
+
+        <meta name="twitter:card" content="summary "/>
+        <meta name="twitter:site" content="@ck3g" />
+        <meta name="twitter:title" content="{% if page.title %}{{ page.title }} |{% endif %} {{ site.template.title }}" />
+
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="{% if page.title %}{{ page.title }} |{% endif %} {{ site.template.title }}" />
+        <meta property="og:url" content="{{ page.url }}"/>
+
         {% if page.desc %}
           <meta name="description" content="{{ page.desc }}">
+          <meta name="twitter:description" content="{{ page.desc }}" />
         {% else %}
           <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.template.description }}{% endif %}">
         {% endif %}
