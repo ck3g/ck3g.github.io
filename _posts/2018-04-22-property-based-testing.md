@@ -10,7 +10,7 @@ excerpt_separator: <!--more-->
 Last week I was visiting the [ElixirConf EU 2018](https://www.elixirconf.eu/).
 Speakers were covering a bunch of interesting topics there.
 One of the most interesting ideas I've got out of those talks was a "Property-based testing" topic.
-That topic was covered by **José Valim** (the creator or Elixir) in the Keynote speech and then in more details by (a core team member) **Andrea Leopardi**.
+That topic was covered by **José Valim** (the creator or Elixir) in the Keynote speech and [then in more details](https://youtu.be/p84DMv8TQuo) by (a core team member) **Andrea Leopardi**.
 
 Let's try to figure out what is a Property-based testing.
 
@@ -189,3 +189,5 @@ As for me, I would like to extend my toolbox with that approach and see how it w
 If you are interested to try the property-based testing in other languages, there is a plenty of ported libraries. Most likely you can find it in your language.
 
 If you are interested in the topic I would encourage you to read the canonical ["QuickCheck" paper](https://www.cs.tufts.edu/~nr/cs257/archive/john-hughes/quick.pdf) and [PropEr Testing web site](http://propertesting.com/). There is much more information about the subject.
+
+And of course to check out [Property-based Testing is a Mindset](https://youtu.be/p84DMv8TQuo) by **Andrea Leopardi** at **ElixirConf EU 2018**
