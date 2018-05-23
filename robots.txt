@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg
+Sitemap: http://whatdidilearn.info/sitemap.xml
