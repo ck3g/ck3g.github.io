@@ -7,11 +7,9 @@ tags: [Elixir]
 excerpt_separator: <!--more-->
 ---
 
-Back in the day at the beginning of my Ruby on Rails learnings I was using the code metric tool called ["Rails Best Practices"](https://rails-bestpractices.com/).
-
 At the beginning of my Ruby on Rails career, I was using the ["Rails Best Practices"](https://rails-bestpractices.com/) code metric tool.
 The intent of the tool is pretty simple.
-It provides you suggestions how to improve your code. The best part of it, that on the https://rails-bestpractices.com website I was able to find
+It provides you suggestions how to improve your code. The best part of it, that on the https://rails-bestpractices.com website I was able to find detailed instructions why and how to fix those issues.
 
 I love that tool. I was using it every day to check my code.
 The cool part about those suggestions that I can go and read an explanation of that issue on [their website](https://rails-bestpractices.com/).
