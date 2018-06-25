@@ -7,7 +7,7 @@ tags: [Alexa]
 excerpt_separator: <!--more-->
 ---
 
-During the last few months as was sticking to topics around Elixir.
+During the last few months I was sticking to topics around Elixir.
 
 But as a developer there are some other areas in software development I am interested in.
 So I would like to write about them too and share my experience.
