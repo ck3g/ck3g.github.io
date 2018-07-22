@@ -21,7 +21,7 @@ Although we would need to use AWS web interface to create a user and policy, the
 
 Let's get started.
 
-<!-- more -->
+<!--more-->
 
 As usual, before we move to a skill itself there is some other work we need to accomplish.
 
@@ -335,7 +335,7 @@ Then deploy is finished you can use your skill from your device or simulator.
 Remember we have changed `withSimpleCard` line? Here is how it looks on the phone
 
 <p align="center">
-  <img src="{{ site.url }}/img/posts/alexa-cli/2-alexa-simple-card.png" />
+  <img style="max-width: 50%" src="{{ site.url }}/img/posts/alexa-cli/2-alexa-simple-card.png" />
 </p>
 
 ## Wrapping up
