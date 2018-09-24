@@ -1,30 +1,28 @@
 ---
 layout: post
-title: "How to call external APIs from Alexa skill"
+title: "How to call external APIs from an Alexa skill"
 desc: "Learn how to make external API calls from Alexa skill."
 keywords: "Amazon, Alexa, Alexa skills, API calls, API"
 tags: [Alexa]
 excerpt_separator: <!--more-->
 ---
 
-In the previous articles, we have covered different aspects of developing Alexa skills.
-We've learned [how to pass state between intents](http://whatdidilearn.info/2018/09/02/how-to-use-session-attributes-in-alexa-skills.html) and [between sessions](http://whatdidilearn.info/2018/09/16/how-to-keep-state-between-sessions-in-alexa-skill.html).
+In the previous articles, we have different aspects of developing Alexa skills.
+We learned [how to pass state between intents](http://whatdidilearn.info/2018/09/02/how-to-use-session-attributes-in-alexa-skills.html) and [sessions](http://whatdidilearn.info/2018/09/16/how-to-keep-state-between-sessions-in-alexa-skill.html).
 
 Sometimes, you may run into a situation when you need to interact with external services.
-It could be a service to fetch weather information or local news.
-Or it could your private service to interact with IoT devices.
+It could be a service to fetch weather information, local news or, you can even set up a private service to interact with IoT devices.
 Basically, anything you can interact with over HTTP.
 
 Now, let's learn how we can interact with external APIs from an Alexa skill.
 
 <!--more-->
 
-We are going to implement a skill to provide quotes from famous people.
+We are going to implement a skill that provides quotes from famous people.
 
-Once we ask Alexa for an inspirational quote.
-The skill would fetch the quotes from API and tell a random quote back to us.
+Once we ask Alexa for an inspirational quote, the skill will fetch quotes from an API and tell a random quote back to us.
 
-To begin, I would create [a boilerplate Hello World skill](http://whatdidilearn.info/2018/07/22/use-ask-cli-to-create-and-deploy-alexa-skills.html) with the single `QuoteIntent`.
+To begin, I'll create [a boilerplate Hello World skill](http://whatdidilearn.info/2018/07/22/use-ask-cli-to-create-and-deploy-alexa-skills.html) with the single `QuoteIntent`.
 
 In the example below, you can see the initial implementation of the intent handler.
 
@@ -64,18 +62,20 @@ const QuoteIntentHandler = {
 ```
 
 We have an `async` handler function. Inside the function, we are fetching a list of the quotes.
-Then we get a random quote from the list and say it to a user.
+Then we get a random quote from the list and say it to the user.
 
-Our goal is to update the implementation of `fetchQuote()` function to fetch the data from some sort of API instead of providing us some hardcoded data.
+Our goal is to update the implementation of the `fetchQuote()` function to fetch data from some sort of API instead of providing us some hardcoded data.
 
 Let's do that.
 
 There are different ways to make an HTTP call in JavaScript.
-Some of them are described in [this article](https://www.twilio.com/blog/2017/08/http-requests-in-node-js.html) from Twilio blog.
+Some of them are described in [this article](https://www.twilio.com/blog/2017/08/http-requests-in-node-js.html) from the Twilio blog.
 
-For our example, I've picked a library called [axios](https://github.com/axios/axios). Mostly because it is based on [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
+For our example, I've picked a library called [axios](https://github.com/axios/axios).
+I've chosen this library primarily because it is based on [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
 
-First, we need to install it as a dependency. Be sure you are doing that from the directory which contains the source code of the lambda function itself.
+First, we need to install it as a dependency.
+Be sure to install it from the directory which contains the source code of the lambda function itself.
 
 ```
 → cd lambda/custom
@@ -83,7 +83,7 @@ First, we need to install it as a dependency. Be sure you are doing that from th
 → cd -
 ```
 
-Then, on the top of the `index.js` file, we need to require the library.
+Then, at the top of the `index.js` file, we need to require the library.
 
 ```js
 const axios = require('axios');
@@ -102,11 +102,13 @@ const fetchQuotes = async () => {
 };
 ```
 
-All we do here is making a GET HTTP request to fetch the data from `quotesUrl` (we will get to it in a bit).
+All we do here is make a GET HTTP request to fetch the data from the `quotesUrl` (we will get to it in a bit).
 Once we get the data, we return it back.
 
-The `quotesUrl` constant contains an URL to an external API. In our case, I am using a JSON file described in [the following gist](https://gist.github.com/ck3g/44afbba3a80270167cedad37bb8114e3).
-The gist has a similar to our initial `fetchQuotes()` function structure. It contains an array of objects. Each object has a `content` and an `author` keys.
+The `quotesUrl` constant contains a URL to an external API.
+In our case, we're using a JSON file described in [the following gist](https://gist.github.com/ck3g/44afbba3a80270167cedad37bb8114e3).
+The gist has a similar function to our initial `fetchQuotes()` function structure.
+It contains an array of objects each of which has `content` key and an `author` key.
 
 ```json
 [
