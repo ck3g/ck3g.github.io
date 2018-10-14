@@ -129,16 +129,16 @@ It was my first experience and I was pretty nervous. In the end that's a great e
 
 Let's look at some figures from that year.
 
-* 46 published articles. Not including this one.
-* 74,243 page views
-* 30,339 unique users
-* Around 100 visitors per day
-* Email subscribers: 26 people
-* The most popular post: ["Elixir. Multiple processes. Basics."](http://whatdidilearn.info/2017/12/17/elixir-multiple-processes-basics.html)
-* The most googled query: "Phoenix channels"
-* AdSense revenue: €46.08 (Can't withdraw it yet)
-* Two people [bought me a coffee](https://www.buymeacoffee.com/ck3g): $6
-* Revenue from affiliate links: None. I've tried to participate in Amazon affiliate program twice. No success.
+* **46** published articles. Not including this one.
+* **74,243** page views
+* **30,339** unique users
+* Around **100** visitors per day
+* Email subscribers: **26** people
+* The most popular post: **["Elixir. Multiple processes. Basics."](http://whatdidilearn.info/2017/12/17/elixir-multiple-processes-basics.html)**
+* The most googled query: **"Phoenix channels"**
+* AdSense revenue: **€46.08** (Can't withdraw it yet)
+* Two people [bought me a coffee](https://www.buymeacoffee.com/ck3g): **$6**
+* Revenue from affiliate links: **None**. I've tried to participate in Amazon affiliate program twice. No success.
 
 
 ## What's next?
