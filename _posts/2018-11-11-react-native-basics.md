@@ -3,7 +3,7 @@ layout: post
 title: "React Native - basics"
 desc: "Taking the first steps to implementing a mobile app."
 keywords: "React, React Native, Mobile development, mobile dev, iOS, Android, JavaScript"
-tags: [React Native, Blitz Reading]
+tags: [ReactNative, BlitzReading]
 feature-img: "img/posts/rn-basics/cover.jpeg"
 img-light: true
 excerpt_separator: <!--more-->

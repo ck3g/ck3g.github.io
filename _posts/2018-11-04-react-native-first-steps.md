@@ -3,7 +3,7 @@ layout: post
 title: "React Native - first steps"
 desc: "Taking the first steps to React Native. Learn what is it and how to implement the Hello World application."
 keywords: "React, React Native, hello world, Mobile development, mobile dev, iOS, Android, JavaScript"
-tags: [React Native]
+tags: [ReactNative]
 feature-img: "img/posts/rn-first-steps/cover.jpeg"
 img-light: true
 excerpt_separator: <!--more-->
