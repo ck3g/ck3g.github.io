@@ -28,7 +28,7 @@ Here is the source of the current implementation of that screen.
 import React, { Component } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 
-export default class HighScoresScreen extends React.Component {
+export default class SettingsScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
