@@ -23,7 +23,7 @@ We are going to add items in there.
 
 Here is the source of the current implementation of that screen.
 
-```js
+```jsx
 // src/screens/SettingsScreen.js
 import React, { Component } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
@@ -67,7 +67,7 @@ The `TextInput` is a basic element which allows users to input some text.
 
 Right next to our "Settings" header, let's add the following code.
 
-```js
+```jsx
 <ScrollView>
   <View style={styles.inputContainer}>
     <TextInput
@@ -92,7 +92,7 @@ We also provide a placeholder text and maximum text length properties.
 
 To make it work, we need to import `TextInput` and `ScrollView` at the top of the file.
 
-```js
+```jsx
 import {
   // ...
   ScrollView,
@@ -103,7 +103,7 @@ import {
 Currently, the input has no styles. Let's add a bunch of them into the existing `StyleSheet.create`.
 
 
-```js
+```jsx
 inputContainer: {
   paddingTop: 15
 },
@@ -139,7 +139,7 @@ When the user clicks outside, the input field will lose its focus.
 An `onBlur` callback can help us in that case.
 To hide a keyboard we need to call the `dismiss()` function of the [`Keyboard`](https://facebook.github.io/react-native/docs/keyboard) module.
 
-```js
+```jsx
 import {
   // ...
   Keyboard
@@ -177,7 +177,7 @@ Let's implement our "Save" button using that approach.
 
 As usual, we need to import the component we are about to use.
 
-```js
+```jsx
 import {
   // ...
   TouchableOpacity
@@ -186,7 +186,7 @@ import {
 
 Then we add our future button right next to the text input
 
-```js
+```jsx
 <View style={styles.inputContainer}>
   <TouchableOpacity
     style={styles.saveButton}
@@ -198,7 +198,7 @@ Then we add our future button right next to the text input
 
 and its styles
 
-```js
+```jsx
 saveButton: {
   borderWidth: 1,
   borderColor: '#007BFF',
@@ -231,7 +231,7 @@ We can do that by updating the state every time the user changes the value of th
 
 Let's update our `TextInput` to read the value from the state and call `onChangeText` callback.
 
-```js
+```jsx
 <TextInput
   style={styles.textInput}
   placeholder="Your name"
@@ -244,7 +244,7 @@ Let's update our `TextInput` to read the value from the state and call `onChange
 
 Then, we need to define the callback function.
 
-```js
+```jsx
 handleNameChange(name) {
   this.setState({ name });
 }
@@ -252,7 +252,7 @@ handleNameChange(name) {
 
 Then, define the constructor with the initial state and bind `this` context to the `handleNameChange()` function.
 
-```js
+```jsx
 constructor(props) {
   super(props);
 
@@ -268,7 +268,7 @@ Now, we know the value of the text input, let's grab it and store when the user 
 
 Add an `onPress` callback.
 
-```js
+```jsx
 <TouchableOpacity
   style={styles.saveButton}
   onPress={this.handleSubmit}
@@ -279,7 +279,7 @@ Add an `onPress` callback.
 
 Then, bind the `this` context in the constructor body
 
-```js
+```jsx
 constructor(props) {
   // ...
   this.handleSubmit = this.handleSubmit.bind(this);
@@ -288,7 +288,7 @@ constructor(props) {
 
 and define the callback itself.
 
-```js
+```jsx
 handleSubmit() {
   saveSettings(this.state);
 }
@@ -303,7 +303,7 @@ Let's define it.
 Create a `src/storage/settingsStorage.js` file with the following content.
 
 
-```js
+```jsx
 import { AsyncStorage } from 'react-native';
 
 const STORAGE_KEY = 'SETTINGS';
@@ -319,7 +319,7 @@ That function receives an object and store the serialized version of it on a mob
 
 To make it work, we need to import the `saveSettings` function from the `settingsStorage` file.
 
-```js
+```jsx
 import { saveSettings } from '../storage/settingsStorage';
 ```
 
@@ -329,7 +329,7 @@ That implementation wouldn't be complete without loading stored data.
 
 Let's add another function to the `settingsStorage.js` file.
 
-```js
+```jsx
 const DEFAULT_SETTINGS = {
   name: ''
 };
@@ -351,7 +351,7 @@ This time, we are loading the settings data. We also return empty settings when 
 
 Now, back to the `src/screens/SettingsScreen.js` file. Let's import that function
 
-```js
+```jsx
 import {
   loadSettings,
   saveSettings
@@ -360,7 +360,7 @@ import {
 
 and call it in the `componentDidMount()` callback, so it will update the state of the component:
 
-```js
+```jsx
 async componentDidMount() {
   const initialState = await loadSettings();
 

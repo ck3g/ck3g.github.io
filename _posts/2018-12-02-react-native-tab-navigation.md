@@ -32,7 +32,7 @@ First, we're going to extract our initial screen from the `App.js` file into a s
 
 Create `src/screens/WelcomeScreen.js` with the following content:
 
-```js
+```jsx
 import React, { Component } from 'react';
 import { Button, Text, View } from 'react-native';
 
@@ -59,13 +59,13 @@ The body of the `render()` method is a former body of `render()` method from the
 
 Now, at the top of the `App.js` file we need to import that screen:
 
-```js
+```jsx
 import WelcomeScreen from './src/screens/WelcomeScreen';
 ```
 
 Once we've extracted the body of `App` component, we can simplify it by returning the `AppNavigator` from there.
 
-```js
+```jsx
 class App extends React.Component {
   render() {
     return <AppNavigator />
@@ -75,7 +75,7 @@ class App extends React.Component {
 
 Now we need to update an `AppNavigator` to use welcome screen instead of the `App` component:
 
-```js
+```jsx
 const AppNavigator = createSwitchNavigator({
   Welcome: WelcomeScreen,
   Practice: PracticeScreen,
@@ -89,7 +89,7 @@ As a finishing touch of these changes, let's rename `AppNavigator` to `HomeNavig
 
 Once we do that, our `App` component should look like that:
 
-```js
+```jsx
 class App extends React.Component {
   render() {
     return <HomeNavigator />
@@ -114,7 +114,7 @@ It has its unique properties, but the general structure is the same.
 
 To define a tab navigator we need to import `createBottomTabNavigator` from `react-navigation` library.
 
-```js
+```jsx
 import {
   createSwitchNavigator,
   createBottomTabNavigator,
@@ -124,7 +124,7 @@ import {
 
 Then we use the function to define the routes of the navigator and link it with screens.
 
-```js
+```jsx
 const AppNavigator = createBottomTabNavigator({
   Home: HomeNavigator,
   HighScores: HighScoresScreen,
@@ -140,13 +140,13 @@ Now, as our app navigator become a top-level navigator we need to pass it to `cr
 
 Change
 
-```js
+```jsx
 export default createAppContainer(HomeNavigator);
 ```
 
 to
 
-```js
+```jsx
 export default createAppContainer(AppNavigator);
 ```
 
@@ -155,14 +155,14 @@ Let's create them.
 
 First, import those screens at the top of the file:
 
-```js
+```jsx
 import HighScoresScreen from './src/screens/HighScoresScreen';
 import SettingsScreen from './src/screens/SettingsScreen';
 ```
 
 Then, create a `src/screens/HighScoresScreen.js` file with the following content:
 
-```js
+```jsx
 import React, { Component } from 'react';
 import { Button, Text, View } from 'react-native';
 
@@ -210,7 +210,7 @@ Let's add it to a project by running those commands from the terminal.
 
 Now, in `App.js` file let's import it.
 
-```js
+```jsx
 import Icon from 'react-native-vector-icons/FontAwesome5';
 ```
 
@@ -219,7 +219,7 @@ It's also possible to use icons from different sets at the same time.
 
 To customize tab navigator we can pass extended options to `createBottomTabNavigator`:
 
-```js
+```jsx
 const AppNavigator = createBottomTabNavigator(
   {
     Home: {
@@ -270,7 +270,7 @@ The result of these changes we can see in the screenshot below:
 There is a way to customize the tab navigator more, by passing an object as a second argument to `createBottomTabNavigator`:
 
 
-```js
+```jsx
 const AppNavigator = createBottomTabNavigator(
   {
     Home: { /* ... */ },
@@ -294,7 +294,7 @@ Here we set the active color of icons to orange and inactive to gray.
 
 As an option, we can remove the label from the buttons completely.
 
-```js
+```jsx
 tabBarOptions: {
   activeTintColor: 'orange',
   inactiveTintColor: 'gray',
@@ -316,7 +316,7 @@ In [the last article](http://whatdidilearn.info/2018/11/25/local-data-persistenc
 Let's update our `HighScoresScreen.js` file to display high scores:
 
 
-```js
+```jsx
 import React, { Component } from 'react';
 import { Button, Text, View } from 'react-native';
 
@@ -363,13 +363,13 @@ We can pass that value as a property for the `HighScores` component.
 
 In the `render()` method of `HighScoresScreen` update the following line:
 
-```js
+```jsx
 <HighScores data={this.state.highScores} totalNumber={25} />
 ```
 Then, we need to use that property and filter the scores out.
 In the `src/components/HighScore.js` update the `getTopScores` function to look like:
 
-```js
+```jsx
 const getTopScores = (highScores, totalNumber) =>
   highScores
     .sort((first, second) => second.score - first.score)
@@ -381,7 +381,7 @@ The `totalNumber` argument will specify the number of scores we are going to dis
 Now, we need to pass the number to that function when we call it.
 Update the body of the component:
 
-```js
+```jsx
 const DEFAULT_TOTAL_NUMBER = 10;
 
 export default HighScores = ({ data, totalNumber }) => {

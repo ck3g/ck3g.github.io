@@ -69,7 +69,7 @@ That would help us to keep the file smaller and reuse the styles in other files.
 
 Create a new `src/styles.js` file and move the styles from `App.js` into it.
 
-```js
+```jsx
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
@@ -79,7 +79,7 @@ export default StyleSheet.create({
 
 then in `App.js` import them:
 
-```js
+```jsx
 import styles from './src/styles';
 ```
 
@@ -96,7 +96,7 @@ In our app we have three relatively independent screens, thus Switch Navigator c
 
 First, we can start by defining our navigator:
 
-```js
+```jsx
 const AppNavigator = createSwitchNavigator({
   App: App
 });
@@ -110,14 +110,14 @@ In our case, we've named route "App" and link it to our `App` component.
 Version 3 of React Navigation requires to define an app container to the root navigator.
 So, let's do that and export it from the file:
 
-```js
+```jsx
 export default createAppContainer(AppNavigator);
 ```
 
 then we need to import `createSwitchNavigator` and `createAppContainer`:
 
 
-```js
+```jsx
 import {
   createSwitchNavigator,
   createAppContainer
@@ -126,7 +126,7 @@ import {
 
 and remove `export default` from the following line
 
-```js
+```jsx
 export default class App extends Component
 ```
 
@@ -138,7 +138,7 @@ As the next steps, we need to break our component into separate screens.
 
 First, we need to describe screens we are going to use within the Switch Navigator.
 
-```js
+```jsx
 const AppNavigator = createSwitchNavigator({
   App: App,
   Practice: PracticeScreen,
@@ -154,7 +154,7 @@ So let's create them one by one.
 
 At the top of the `App.js` file, import the screens we are about to create.
 
-```js
+```jsx
 import PracticeScreen from './src/screens/PracticeScreen';
 import ResultsScreen from './src/screens/ResultsScreen';
 ```
@@ -163,7 +163,7 @@ Then, create an `src/screens` directory with the `ResultsScreen.js` file inside.
 We need to create a `ReactScreen` component there and move the content of our `renderResultsScreen()` function, as well as import,  required components, and styles.
 
 
-```js
+```jsx
 import React from 'react';
 import { Button, View, Text } from 'react-native';
 import styles from '../styles';
@@ -214,13 +214,13 @@ To navigate between screens we are using `this.props.navigation.navigate(routeNa
 
 Replace
 
-```js
+```jsx
 this.onPressPractice
 ```
 
 to
 
-```js
+```jsx
 () => this.props.navigation.navigate('Practice')
 ```
 
@@ -232,7 +232,7 @@ In the same way, as before, create a `scr/screens/PracticeScreen.js` file.
 Define a `PracticeScreen` component inside and set `render()` body to be the body of `renderPracticeScreen()`:
 
 
-```js
+```jsx
 import React from 'react';
 import { Button, View, Text } from 'react-native';
 import styles from '../styles';
@@ -262,7 +262,7 @@ The `PracticeScreen` is a core screen of the application and will keep all the p
 The button's event `onPress` stays the same.
 In order to make it work, we need to move `onPressNextWord()` function from the `App` controller here.
 
-```js
+```jsx
 onPressNextWord() {
   const { words, totalWords } = this.state;
   const nextWord = words.shift()
@@ -280,7 +280,7 @@ But we need to apply a couple of changes to make it work.
 
 Next, we need to define a constructor for the component.
 
-```js
+```jsx
 constructor(props) {
   super(props)
 
@@ -305,7 +305,7 @@ One of those callbacks is [`componentDidMount`](https://reactjs.org/docs/react-c
 Thus, let's define that callback and move the body of `onPressPractice()` function from the `App.js` file.
 
 
-```js
+```jsx
 componentDidMount() {
   setTimeout(() => (
     this.setState({ currentScreen: 'results' })
@@ -331,13 +331,13 @@ Then, we need to define `PRACTICE_TIME` constant. Let's move it from the `App.js
 
 Now, as soon as we are not using the state to navigate between screens anymore, we need to replace the following line:
 
-```js
+```jsx
 this.setState({ currentScreen: 'results' })
 ```
 
 with
 
-```js
+```jsx
 this.props.navigation.navigate('Results', {
   totalWords: this.state.totalWords
 })
@@ -352,7 +352,7 @@ You can read more about passing and reading parameters on a [documentation page]
 As the last step to make that screen work, we need to import `allWords` and `shuffle` functions.
 Paste those lines at the top of the file:
 
-```js
+```jsx
 import allWords from '../words.en.json';
 import shuffle from '../shuffle';
 ```
@@ -368,7 +368,7 @@ Then, we clean up all leftovers we didn't remove yet.
 
 That's how the `App` components looks now:
 
-```js
+```jsx
 import React, { Component } from 'react';
 import { Button, Text, View } from 'react-native';
 import {

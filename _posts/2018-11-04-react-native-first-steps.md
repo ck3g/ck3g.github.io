@@ -233,7 +233,7 @@ The heart of the application is located in the `index.js` file of our project.
 
 Let's walk from top to bottom.
 
-```javascript
+```jsx
 import {AppRegistry} from 'react-native';
 import App from './App';
 import {name as appName} from './app.json';
@@ -248,14 +248,14 @@ As the last step, it registers the component which makes the application runnabl
 Now let's move to the `App` component itself located in the `App.js` file.
 
 
-```javascript
+```jsx
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 ```
 
 First two lines import some modules and components we are going to use.
 
-```javascript
+```jsx
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
   android:
@@ -267,7 +267,7 @@ const instructions = Platform.select({
 The [`Platform`](https://facebook.github.io/react-native/docs/platform-specific-code) allows us to add different behavior for different platforms.
 As you can see on screenshots above the application provides different instructions for iOS and Android users.
 
-```javascript
+```jsx
 type Props = {};
 export default class App extends Component<Props> {
   render() {
@@ -290,7 +290,7 @@ You can think of `View` as the similar to HTML's `div` tag. It wraps other eleme
 
 Every element in that example has its styles. Here is how they are described.
 
-```javascript
+```jsx
 const styles = StyleSheet.create({
   container: {
     flex: 1,

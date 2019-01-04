@@ -49,13 +49,13 @@ We would need to use that value in several places, thus let's extract it into a 
 
 Open the `src/screens/ResultsScreen.js` file and change the following line
 
-```js
+```jsx
 Words count: {navigation.getParam('totalWords', 0)}
 ```
 
 to
 
-```js
+```jsx
 Words count: {this.state.totalWords}
 ```
 
@@ -63,7 +63,7 @@ We are indicating here, that we want to display the number from the component's 
 
 Next, let's define a constructor and set the initial value for `totalWords` as well as an initial value for the high scores.
 
-```js
+```jsx
 constructor(props) {
   super(props);
 
@@ -73,7 +73,7 @@ constructor(props) {
 
 Now, when the component is mounted, we need to fetch the value and update the state.
 
-```js
+```jsx
 componentDidMount() {
   const totalWords = this.props.navigation.getParam('totalWords', 0);
   this.setState({ totalWords });
@@ -92,7 +92,7 @@ Now, when the list of actions is clear, let's proceed with the implementation.
 
 Add the following call to the bottom of the `componentDidMount()` method.
 
-```js
+```jsx
 this.updateHighScores();
 ```
 
@@ -101,7 +101,7 @@ The function will handle all the required steps we need in order to fetch, updat
 Now, we need to implement it.
 
 
-```js
+```jsx
 async updateHighScores(totalWords) {
   try {
     let highScores = await fetchHighScores();
@@ -131,7 +131,7 @@ After that, we are storing updated results to the state and output them to a con
 The current file doesn't know anything about these 3 functions.
 We need to import them at the top of the file:
 
-```js
+```jsx
 import {
   fetchHighScores,
   mergeHighScores,
@@ -147,7 +147,7 @@ It will contain all the code required to save and load high scores from the loca
 
 First, let's implement the `fetchHighScores()` function;
 
-```js
+```jsx
 export const fetchHighScores = async () => {
   try {
     let highScores = await AsyncStorage.getItem(STORAGE_KEY);
@@ -166,13 +166,13 @@ That function declared with the `async` keywords as well, because we are using a
 The function retrieves all the data stored under a certain key.
 In our case, it's a "HIGH_SCORES" string, which we need to define at the top of the file.
 
-```js
+```jsx
 const STORAGE_KEY = 'HIGH_SCORES';
 ```
 
 Now, when we are using `AsyncStorage` we need to import it as well.
 
-```js
+```jsx
 import { AsyncStorage } from 'react-native';
 ```
 
@@ -183,7 +183,7 @@ If we retrieved some data, we parse it and return the parsed version of it.
 
 Let's look how do we parse that data.
 
-```js
+```jsx
 const parseHighScores = (highScores) =>
   JSON.parse(highScores).map((highScore) => {
     highScore.createdAt = new Date(highScore.createdAt)
@@ -202,7 +202,7 @@ By doing all these steps we are providing a valid object right after we retrieve
 
 Let's move to the implementation of the next function. `mergeHighScores()`:
 
-```js
+```jsx
 export const mergeHighScores = (highScores, totalWords) => {
   const score = {
     score: totalWords,
@@ -221,7 +221,7 @@ Then returns a new array, which contains all the values from the previous one an
 
 Finally we get to the `saveHighScores()` function:
 
-```js
+```jsx
 export const saveHighScores = (highScores) => {
   AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(highScores));
 }
@@ -249,7 +249,7 @@ For now, let's display top 10 high scores on the results screen, once the user f
 
 In the `ResultsScreen.js`, next to our "Words count" text, add the following line:
 
-```js
+```jsx
 <HighScores data={this.state.highScores} />
 ```
 
@@ -257,13 +257,13 @@ We are going to render high scores in a separate component.
 
 Next, import it on the top of the file:
 
-```js
+```jsx
 import HighScores from '../components/HighScores';
 ```
 
 Now, create a `src/components/HighScores.js` file where we are about to implement the component.
 
-```js
+```jsx
 export default HighScores = ({ data }) => {
   const highScores = getTopScores(data);
 
@@ -284,7 +284,7 @@ The component receives all the high scores as a `data` property.
 
 Then, we are using `getTopScores` function to get only high scores we need.
 
-```js
+```jsx
 const getTopScores = (highScores) =>
   highScores
     .sort((first, second) => second.score - first.score)
@@ -299,7 +299,7 @@ After the sort, we are getting only top 10 records and return them from the func
 Back to our component, we are displaying a "High Scores" as it's title, followed by a `TableHeader` component.
 Here how it looks:
 
-```js
+```jsx
 const TableHeader = () => {
   return (
     <View>
@@ -315,7 +315,7 @@ It plays the role of table header and has 3 "columns".
 
 Right after the header, we are going through every high score and render a `Row` component for every row.
 
-```js
+```jsx
 const Row = ({ highScore, index }) => {
   return (
     <View style={styles.row}>
@@ -342,7 +342,7 @@ Let's describe some styles and attach them to hour elements.
 
 Fast forwarding, here is how the whole file looks like:
 
-```js
+```jsx
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 

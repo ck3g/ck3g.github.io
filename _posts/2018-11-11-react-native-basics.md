@@ -87,7 +87,7 @@ Once we have a prototype up and running we can start to refactor it to a better 
 
 Let's start by changing the `render` method of our `App` component.
 
-```js
+```jsx
 export default class App extends Component {
   render() {
     const { currentScreen } = this.state;
@@ -112,7 +112,7 @@ As soon as we can have a single screen at the same time, we are using `this.stat
 
 Now we need to define a constructor for the `App` component and set the initial state.
 
-```js
+```jsx
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -136,7 +136,7 @@ We set the initial state to have `"welcome"` as a `currentScreen`.
 
 Now, let's move to implementation of render functions.
 
-```js
+```jsx
 renderWelcomeScreen() {
   return (
     <View>
@@ -153,14 +153,14 @@ Next to the text we render a "Practice" button using [React Native Button compon
 To be able to use the button inside our component we need to import it at the top of the file.
 
 
-```js
+```jsx
 import {Button, StyleSheet, Text, View} from 'react-native';
 ```
 
 The practice screen and the result screen look very similar.
 They have their own text and buttons.
 
-```js
+```jsx
 renderPracticeScreen() {
   return (
     <View>
@@ -187,7 +187,7 @@ Which we need to describe using the `StyleSheet.create` method at the bottom of 
 That's how they look.
 
 
-```js
+```jsx
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -232,7 +232,7 @@ The results screen leads to practice, and so on.
 To capture a press button event, a `Button` components should have an `onPress` property.
 Let's define the on press event for the button in the `renderWelcomeScreen` method.
 
-```js
+```jsx
 <Button
   onPress={this.onPressPractice}
   title="Practice"
@@ -243,7 +243,7 @@ By doing so, we are telling the `Button` to call an `onPressPractice` function, 
 
 The `onPressPractice` function does not exist yet. Let's define it.
 
-```js
+```jsx
 onPressPractice() {
   this.setState({ currentScreen: 'practice' });
 }
@@ -270,7 +270,7 @@ To make it work, we need to bind that `this` to a current context.
 
 Let's add the following line to the constructor.
 
-```js
+```jsx
 this.onPressPractice = this.onPressPractice.bind(this);
 ```
 
@@ -283,7 +283,7 @@ Once that issue is fixed, let's navigate to the results screen in a similar way.
 
 First, add the `onPress` property of the `Button` inside `renderPracticeScreen`.
 
-```js
+```jsx
 <Button
   onPress={this.onPressNextWord}
   title="Next Word"
@@ -292,7 +292,7 @@ First, add the `onPress` property of the `Button` inside `renderPracticeScreen`.
 
 Define the method itself
 
-```js
+```jsx
 onPressNextWord() {
   this.setState({ currentScreen: 'results' });
 }
@@ -300,13 +300,13 @@ onPressNextWord() {
 
 and bind `this` in the constructor
 
-```js
+```jsx
 this.onPressNextWord = this.onPressNextWord.bind(this);
 ```
 
 As the last step, we need to update the `Button` in the `renderResultsScreen` method.
 
-```js
+```jsx
 <Button
   onPress={this.onPressPractice}
   title="Practice Again"
@@ -326,7 +326,7 @@ To do that, we need to start a timer right before we start a practice session to
 
 Let's update the `onPressPractice` method to cover that case.
 
-```js
+```jsx
 onPressPractice() {
   setTimeout(() => (
     this.setState({ currentScreen: 'results' })
@@ -339,7 +339,7 @@ onPressPractice() {
 then we need to define the `PRACTICE_TIME` constant right next to our `import` usages.
 But instead of a minute, let's set it to 10 seconds, that would make it easier to test.
 
-```js
+```jsx
 const PRACTICE_TIME = 10 * 1000;
 ```
 
@@ -355,13 +355,13 @@ The next feature we need to work on is to calculate and display the number of wo
 We are going to keep the amount in the state and retrieve it every time we need.
 First, let's add an initial value of `totalWords` to our constructor:
 
-```js
+```jsx
 this.state = { currentScreen: 'welcome', totalWords: 0 };
 ```
 
 Then, we increase that value on button press:
 
-```js
+```jsx
 onPressNextWord() {
   this.setState({
     totalWords: this.state.totalWords + 1
@@ -372,7 +372,7 @@ onPressNextWord() {
 And render that amount on the results screen.
 Update the `renderResultsScreen` method and replace `0` with the correct amount:
 
-```js
+```jsx
 <Text style={styles.results}>Words count: {this.state.totalWords}</Text>
 ```
 
@@ -381,7 +381,7 @@ As the last step, we need to reset that value back to zero every time we start a
 
 Update the `onPressPractice` method to reset it:
 
-```js
+```jsx
 onPressPractice() {
   // setTimeout ...
 
@@ -402,7 +402,7 @@ Let's tackle that problem.
 First, we need to create a new file and save it as `src/words.en.json`.
 Then, we populate the file with the list of sight words.
 
-```json
+```jsxon
 ["the",   "of", "and", "a", "to", "in", "is", "you", "..."]
 ```
 
@@ -410,7 +410,7 @@ The complete file you can find on [GitHub](https://github.com/ck3g/BlitzReading/
 
 Next, import the file on the top of `App.js`.
 
-```js
+```jsx
 import allWords from './src/words.en.json';
 ```
 
@@ -419,7 +419,7 @@ Now, let's move on to `onPressPractice` method.
 Here we need to grab a word, store it into a state, and display it on the page.
 As soon as we don't want the same word to appear more than once during a practice session, we are going to grab an element from the array and remove it.
 
-```js
+```jsx
 onPressPractice() {
   // setTimeout ...
 
@@ -445,7 +445,7 @@ We save all those values into the state.
 
 When we press the "Next" button, we need to grab a new word and repeat similar steps:
 
-```js
+```jsx
 onPressNextWord() {
   const { words, totalWords } = this.state;
   const nextWord = words.shift()
@@ -461,13 +461,13 @@ onPressNextWord() {
 Finally, we need to render the current word on the practice screen.
 Update `renderPracticeScreen` and replace
 
-```js
+```jsx
 <Text style={styles.word}>word</Text>
 ```
 
 with
 
-```js
+```jsx
 <Text style={styles.word}>{this.state.currentWord}</Text>
 ```
 
@@ -489,7 +489,7 @@ JavaScript does not have a built-in function to do that, but we can implement th
 
 Here is the complete implementation:
 
-```js
+```jsx
 export default shuffle = (initialArray) => {
   let array = [...initialArray]; // Prevent changing the initial array
 
@@ -509,18 +509,18 @@ Let's save it into the `src/shuffle.js` file.
 Now we can import it:
 
 
-```js
+```jsx
 import shuffle from './src/shuffle';
 ```
 
 and replace the following line from the `onPressPractice` function
 
-```js
+```jsx
 const words = [...allWords];
 ```
 to
 
-```js
+```jsx
 const words = shuffle(allWords);
 ```
 

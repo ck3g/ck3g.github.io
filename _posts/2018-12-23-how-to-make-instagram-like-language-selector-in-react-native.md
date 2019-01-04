@@ -39,7 +39,7 @@ First, let's open a `src/screens/SettingsScreen.js` file and add our future sett
 
 Add
 
-```js
+```jsx
 <View style={styles.inputContainer}>
   <SettingsList />
 </View>
@@ -47,14 +47,14 @@ Add
 
 right before the submit button and import the component at the top of the file.
 
-```js
+```jsx
 import SettingsList from '../components/SettingsList';
 ```
 
 Then, we need to create a new file `src/components/SettingsList.js` with the following content:
 
 
-```js
+```jsx
 import React from 'react';
 import { Text, View } from 'react-native';
 
@@ -105,7 +105,7 @@ Let's call that component `SettingsListItem`.
 
 Replace
 
-```js
+```jsx
 settings.map((item) => (
   <Text key={item.name}>{item.name}</Text>
 ))
@@ -113,7 +113,7 @@ settings.map((item) => (
 
 with
 
-```js
+```jsx
 settings.map((item) => (
   <SettingsListItem
     key={item.name}
@@ -124,7 +124,7 @@ settings.map((item) => (
 
 Then, import the component at the top of the file
 
-```js
+```jsx
 import SettingsListItem from './SettingsListItem';
 ```
 
@@ -133,7 +133,7 @@ We started using the component, but it doesn't exist yet.
 Create a new file `src/components/SettingsListItem.js` with the following content.
 
 
-```js
+```jsx
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -203,7 +203,7 @@ In the `src/screens/SettingsScreen.js` file, right after the `SettingsScreen` cl
 To do that, we need to call the `createStackNavigator` function and pass an object to describe screens.
 
 
-```js
+```jsx
 const SettingsNavigator = createStackNavigator({
   Settings: SettingsScreen,
   LanguageSelector: LanguageSelectorScreen,
@@ -216,14 +216,14 @@ The keys of the object are routes' names, and values are screen components.
 
 Now, import the `createStackNavigator` function at the top of the file
 
-```js
+```jsx
 import { createStackNavigator } from 'react-navigation';
 ```
 
 In order to make it work, we need to export a `SettingsNavigator` instead of `SettingsScreen` component from the current file.
 Thus, remove `export default` from the class definition:
 
-```js
+```jsx
 export default class SettingsScreen extends React.Component { /* ... */ }
 ```
 
@@ -231,7 +231,7 @@ and export `SettingsNavigator` instead.
 
 Add the following line at the bottom of the file:
 
-```js
+```jsx
 export default SettingsNavigator;
 ```
 
@@ -241,14 +241,14 @@ Now we can get back to our screens.
 
 First, let's import those screens.
 
-```js
+```jsx
 import LanguageSelectorScreen from './LanguageSelectorScreen';
 import AboutScreen from './AboutScreen';
 ```
 
 Then create `src/screens/LanguageSelectorScreen.js` and `src/screens/AboutScreen.js` files with the following content:
 
-```js
+```jsx
 import React from 'react';
 import { Text, View } from 'react-native';
 import styles from '../styles';
@@ -277,7 +277,7 @@ In the `SettingsScreen` pass an `onPressItem` property into the `SettingsList` c
 The value of that property will be a callback function.
 Once the callback is triggered we are going to navigate to a certain screen.
 
-```js
+```jsx
 <SettingsList
   onPressItem={(screen) => this.props.navigation.navigate(screen)}
 />
@@ -291,7 +291,7 @@ Open the `src/components/SettingsList.js` file.
 In that file we are going to update the `settings` array and provide a "screen" option:
 
 
-```js
+```jsx
 const settings = [
   {
     name: 'Display language',
@@ -307,7 +307,7 @@ const settings = [
 Next, pass `onPress` property into a `SettingsListItem` component:
 
 
-```js
+```jsx
 <SettingsListItem
   key={item.name}
   title={item.name}
@@ -320,7 +320,7 @@ Every time when that callback is triggered, we are going to call a parent's `onP
 Next, we need to make the list item touchable.
 In the `SettingsListItem` component, we need to replace `<View>` with the `<TouchableOpacity>` and define `onPress` prop.
 
-```js
+```jsx
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 class SettingsListItem extends React.Component {
@@ -356,7 +356,7 @@ The property can be either an object or a function.
 
 First, let's define `navigationOptions` for every screen.
 
-```js
+```jsx
 class AboutScreen extends React.Component {
   static navigationOptions = {
     title: 'About'
@@ -366,7 +366,7 @@ class AboutScreen extends React.Component {
 }
 ```
 
-```js
+```jsx
 class LanguageSelectorScreen extends React.Component {
   static navigationOptions = {
     title: 'Language'
@@ -376,7 +376,7 @@ class LanguageSelectorScreen extends React.Component {
 }
 ```
 
-```js
+```jsx
 class SettingsScreen extends React.Component {
   static navigationOptions = {
     title: 'Settings'
@@ -391,7 +391,7 @@ Currently, the settings screen has its own header. We can get rid of it now.
 Remove the following lines from the `SettingsScreen` component:
 
 
-```js
+```jsx
 <View>
   <Text style={styles.header}>Settings</Text>
 </View>
@@ -413,7 +413,7 @@ For the language selector, we need to define a similar list as we did before for
 Let's update the `LanguageSelectorScreen`:
 
 
-```js
+```jsx
 import React from 'react';
 import { View } from 'react-native';
 
@@ -462,7 +462,7 @@ It defines the list of available languages, then iterates through that list and 
 
 Create a new file `src/components/LanguageListItem.js` with the following content.
 
-```js
+```jsx
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -539,7 +539,7 @@ Now, the user should be able to select its items.
 
 In the `LanguageListItem` component, change the top `View` to a `TouchableOpacity` with `onPress` property.
 
-```js
+```jsx
 render() {
   return (
     <TouchableOpacity
@@ -554,7 +554,7 @@ render() {
 
 Next, we need to define `handleLocaleChange` method:
 
-```js
+```jsx
 handleLocaleChange() {
   Alert.alert(
     'Change language?',
@@ -581,7 +581,7 @@ In our case, it's a "Cancel" button, which dismisses the alert window and a "Cha
 Now, we need to bind `this` context in the constructor.
 
 
-```js
+```jsx
 constructor(props) {
   super(props);
 
@@ -594,7 +594,7 @@ When the user confirms the change, we are going to pass selected locale to a `La
 Update the `render()` method of `LanguageSelectorScreen`.
 
 
-```js
+```jsx
 render() {
   const { navigation } = this.props;
   const currentLocale = navigation.getParam('currentLocale');
@@ -628,7 +628,7 @@ In the `render()` method of the `SettingsScreen`, we need to pass an additional 
 We are going to pass there a locale from the current state.
 
 
-```js
+```jsx
 <SettingsList
   onPressItem={
     (screen) =>
@@ -641,7 +641,7 @@ We are going to pass there a locale from the current state.
 ```
 Since we are using a `locale` from the state, we need to define a default value in the constructor.
 
-```js
+```jsx
 this.state = { name: '', locale: 'en' }
 ```
 
@@ -650,7 +650,7 @@ Now, we are passing the locale to a language selector screen and back to setting
 As the last piece, we need to grab the updated locale every time we navigate to the settings screen and update the component's state.
 To achieve that, we can define `componentDidUpdate` callback.
 
-```js
+```jsx
 componentDidUpdate(prevProps, prevState) {
   const locale = this.props.navigation.getParam('locale', null);
   if (locale && prevState.locale !== locale) {

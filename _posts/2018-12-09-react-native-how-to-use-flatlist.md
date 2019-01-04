@@ -50,7 +50,7 @@ It's as simple as using a `View` component.
 
 Here is how our `HighScores` component looks at the moment:
 
-```js
+```jsx
 export default HighScores = ({ data, totalNumber }) => {
   const highScores = getTopScores(
     data, totalNumber || DEFAULT_TOTAL_NUMBER
@@ -74,7 +74,7 @@ Let's fix it by wrapping our rows into a `ScrollView`.
 Open a `src/components/HighScores.js` file and update the component implementation to use a `ScrollView`:
 
 
-```js
+```jsx
 export default HighScores = ({ data, totalNumber }) => {
   const highScores = getTopScores(
     data, totalNumber || DEFAULT_TOTAL_NUMBER
@@ -97,13 +97,13 @@ export default HighScores = ({ data, totalNumber }) => {
 
 Next, at the top of the file, we need to import the component.
 
-```js
+```jsx
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
 ```
 
 We also need to add `marginTop: 50` into the styles, to give our component a small indent in the horizontal mode.
 
-```js
+```jsx
 const styles = StyleSheet.create({
   container: {
     width: 300,
@@ -151,7 +151,7 @@ Let's refactor our `HighScores` component to use a `FlatList` instead of `Scroll
 
 Update the `HighScores` component:
 
-```js
+```jsx
 export default HighScores = ({ data, totalNumber }) => {
   const highScores = getTopScores(
     data, totalNumber || DEFAULT_TOTAL_NUMBER
@@ -178,7 +178,7 @@ In the example above, we have provided the list of high scores as a `data` prope
 Don't forget to import a `FlatList` at the top of the file.
 
 
-```js
+```jsx
 import { FlatList, View, Text, StyleSheet } from 'react-native';
 ```
 
@@ -200,7 +200,7 @@ For example, we can iterate through the collection and add a new key to it.
 *Pay attention, the `key` should be a string, not a number.*
 
 
-```js
+```jsx
 const highScores = getTopScores(
   data, totalNumber || DEFAULT_TOTAL_NUMBER
 ).map((highScore, index) => {
@@ -214,7 +214,7 @@ Of course, we can build or collection in a way that it will contain `key` in the
 Another way would be to use `keyExtractor` property:
 
 
-```js
+```jsx
 <FlatList
   data={highScores}
   renderItem={
@@ -253,7 +253,7 @@ Let's take a look at some of them.
 Sometimes, our lists might be empty.
 If we want to style it differently, we can to that by using `ListEmptyComponent` property.
 
-```js
+```jsx
 <View style={styles.container}>
   <Text style={styles.header}>High Scores</Text>
   <TableHeader />
@@ -283,13 +283,13 @@ Let's display the header, only when there are some records.
 
 Change
 
-```js
+```jsx
 <TableHeader />
 ```
 
 to
 
-```js
+```jsx
 {highScores.length > 0 && <TableHeader />}
 ```
 
@@ -308,7 +308,7 @@ We already have ours: `<TableHeader />`.
 
 Let's update the code:
 
-```js
+```jsx
 <View style={styles.container}>
   <Text style={styles.header}>High Scores</Text>
   <FlatList
