@@ -2,7 +2,7 @@
 layout: post
 title: "Internationalization in React Native"
 desc: "Learn how to internationalize your React Native application."
-keywords: "React Native, i18n, Internationalization, l10n, localization, lMobile development, iOS, Android, JavaScript"
+keywords: "React Native, i18n, Internationalization, l10n, localization, Mobile development, iOS, Android, JavaScript"
 tags: [ReactNative, BlitzReading]
 excerpt_separator: <!--more-->
 ---
