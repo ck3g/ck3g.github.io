@@ -176,6 +176,37 @@ Now, when we are using `AsyncStorage` we need to import it as well.
 import { AsyncStorage } from 'react-native';
 ```
 
+--------------
+Async Storage has been extracted from react-native core.
+If you are using ReactNative version 0.59, you'll need to install `@react-native-community/async-storage` as a dependency.
+
+Run the following command in your terminal window:
+
+```
+npm install --save @react-native-community/async-storage
+```
+or
+
+```
+yarn add @react-native-community/async-storage
+```
+
+then instead of
+
+```js
+import { AsyncStorage } from 'react-native';
+```
+
+import the library as
+
+```js
+import AsyncStorage from '@react-native-community/async-storage';
+```
+
+----------------
+
+
+
 So, we're reading data from the store.
 Then, if we didn't get any data, which is happening when we are using the app for the first time, we return an empty array from the function.
 
