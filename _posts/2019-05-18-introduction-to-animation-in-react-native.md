@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Introduction to animation in React Native"
-desc: "Learn what is Redux, what problems does it solve and how to use it in the React Native applications."
+desc: "Learn what is Animated module, and how to use it in the React Native applications."
 keywords: "React Native, mobile development, iOS, Android, Animation, Animated, transition, rotate, fade in, fade out, scale, resize, change color"
 tags: [ReactNative, Animation]
 excerpt_separator: <!--more-->
